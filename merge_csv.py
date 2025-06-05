@@ -3,7 +3,8 @@ import argparse
 import pandas as pd
 import sys
 
-def merge_csv_files(file1, file2, key, output_file='output.csv'):
+
+def merge_csv_files(file1, file2, key, output_file="output.csv"):
     try:
         # CSVファイルを読み込む
         df1 = pd.read_csv(file1)
@@ -15,10 +16,10 @@ def merge_csv_files(file1, file2, key, output_file='output.csv'):
             sys.exit(1)
 
         # データフレームをマージ
-        merged_df = pd.merge(df1, df2, on=key, how='outer')
+        merged_df = pd.merge(df1, df2, on=key, how="outer")
 
         # 結果をCSVファイルに出力
-        merged_df.to_csv(output_file, index=False)
+        merged_df.to_csv(output_file, index=False, encoding="utf-8-sig")
         print(f"マージが完了しました。出力ファイル: {output_file}")
 
     except FileNotFoundError as e:
@@ -31,16 +32,22 @@ def merge_csv_files(file1, file2, key, output_file='output.csv'):
         print(f"エラーが発生しました: {e}")
         sys.exit(1)
 
+
 def main():
-    parser = argparse.ArgumentParser(description='2つのCSVファイルをマージします。')
-    parser.add_argument('file1', help='1つ目のCSVファイルのパス')
-    parser.add_argument('file2', help='2つ目のCSVファイルのパス')
-    parser.add_argument('key', help='マージに使用するキー（列名）')
-    parser.add_argument('-o', '--output', default='output.csv',
-                      help='出力ファイル名（デフォルト: output.csv）')
+    parser = argparse.ArgumentParser(description="2つのCSVファイルをマージします。")
+    parser.add_argument("file1", help="1つ目のCSVファイルのパス")
+    parser.add_argument("file2", help="2つ目のCSVファイルのパス")
+    parser.add_argument("key", help="マージに使用するキー（列名）")
+    parser.add_argument(
+        "-o",
+        "--output",
+        default="output.csv",
+        help="出力ファイル名（デフォルト: output.csv）",
+    )
 
     args = parser.parse_args()
     merge_csv_files(args.file1, args.file2, args.key, args.output)
 
-if __name__ == '__main__':
-    main() 
+
+if __name__ == "__main__":
+    main()
