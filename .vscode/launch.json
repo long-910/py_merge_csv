@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: CSVマージ",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/merge_csv.py",
+            "args": [
+                "test_data/customers.csv",
+                "test_data/orders.csv",
+                "customer_id",
+                "-o",
+                "merged_result.csv"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Python: 現在のファイル",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
